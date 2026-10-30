@@ -1,0 +1,269 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>Kodlabbet</title>
+    <link rel="stylesheet" href="./libs/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./libs/codemirror/addon/display/fullscreen.css">
+    <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet" type="text/css">  
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./stylesheets/jquery-ui.css">
+    <link rel="stylesheet" href="./stylesheets/edit.css">
+  </head>
+  <body style="zoom: 1;">
+    <h1>Kodlabbet</h1>
+    <h2 id="kodtext">
+      Inte sparad ännu
+    </h2>
+    <h2 id="monitortext">
+      Inte sparad ännu
+    </h2>
+    <div id="codecontainer"><textarea id="code" name="code" style="display: none;">&lt;script src="./scripts/simple.js"&gt;
+
+  circle(100, 100, 20, "red");
+
+&lt;/script&gt;</textarea>
+<div class="CodeMirror cm-s-default">
+  <div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.60001px; left: 35.6px;">
+    <textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div>
+    <div class="CodeMirror-vscrollbar" cm-not-content="true">
+      <div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true" style="display: block; right: 0px; left: 30px;"><div style="height: 100%; min-height: 1px; width: 298px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: -12px; border-right-width: 18px; min-height: 91px; min-width: 230.442px; padding-right: 0px; padding-bottom: 12px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 14.9333px;">&nbsp;</div></div><div class="CodeMirror-code" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span> <span class="cm-attribute">src</span>=<span class="cm-string">"./scripts/simple.js"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">  <span class="cm-variable">circle</span>(<span class="cm-number">100</span>, <span class="cm-number">100</span>, <span class="cm-number">20</span>, <span class="cm-string">"red"</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 18px; width: 1px; top: 103px;"></div><div class="CodeMirror-gutters" style="height: 373px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div>
+    <div id="iframecontainer"><iframe id="preview"></iframe></div>
+
+    
+    <button id="fontplus" onclick="change_fontsize(1)">+</button>
+    <button id="fontminus" onclick="change_fontsize(-1)">-</button>
+    <button id="fullscreen" onclick="toggle_fullscreen()">F</button>
+
+    <button id="save" type="button" onclick="warning=true;post_new_code()">Spara koden</button>
+    <button id="run" type="button" onclick="updatePreview()">Kör koden</button>
+<button id="api" type="button" onclick="openDialog()">API</button>
+    <button id="youtube" type="button" onclick="window.open('https://www.youtube.com/playlist?list=PLacLTA7npkEaxlsKIL06aLqtLVKIKurRN'); return false">Videoguider</button>
+    <div id="savemessage" style="opacity: 0;">Should not see me!</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="./libs/jquery.ui.touch-punch.min.js"></script>
+
+    <script src="./libs/codemirror/lib/codemirror.js"></script>
+
+    <script src="./libs/codemirror/mode/xml/xml.js"></script>
+    <script src="./libs/codemirror/mode/javascript/javascript.js"></script>
+    <script src="./libs/codemirror/mode/css/css.js"></script>
+    <script src="./libs/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="./libs/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="./libs/codemirror/addon/display/fullscreen.js"></script>
+    <script src="./libs/edit.js"></script>
+   <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable" 
+   tabindex="-1" role="dialog" aria-describedby="dialog_api" aria-labelledby="ui-id-1" id="dialog-api"
+    style="position: absolute; height: auto; width: 600px; top: 0px; left: 0px; display:none;">
+    <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">
+      <span id="ui-id-1" class="ui-dialog-title">API</span>
+      <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" 
+      role="button" title="Close">
+    <span class="ui-button-icon-primary ui-icon ui-icon-closethick"  onclick="closeDialog();">X</span><span class="ui-button-text">Close</span></button></div><div class="dialog ui-dialog-content ui-widget-content" id="dialog_api" style="width: auto; min-height: 83px; max-height: none; height: auto;">
+      <dl>
+        <dt>abs(X)</dt>  
+        <dd> Returnerar absolutbeloppet av talet <code>X</code>.</dd> 
+        <dt>arc(X, Y, RADIE, VINKEL, TJOCKLEK, FÄRG)</dt>
+        <dd> Ritar ett cirkelsegment på position (<code>X</code>, <code>Y</code>)
+          med den givna radien, vinkeln, linjetjockleken och
+          färgen.</dd>
+        <dt>ceil(X)</dt> 
+        <dd> Returnerar talet <code>X</code> utan några decimaler, avrundat uppåt.</dd>
+        <dt>circle(X, Y, RADIE, FÄRG)</dt>
+        <dd> Ritar en fylld cirkel på position (<code>X</code>, <code>Y</code>)
+          med den givna radien och färgen.</dd>
+        <dt>clearScreen()</dt>  
+        <dd> Rensar ritytan.</dd>
+        <dt>distance(X1, Y1, X2, Y2)</dt>  
+        <dd> Returnerar avståndet mellan punkterna (<code>X1</code>,
+          <code>Y1</code>) och (<code>X2</code>, <code>Y2</code>). Kan också anropas med
+          endast två argument om de är objekt som innehåller
+          variablerna <code>x</code> och <code>y</code>.</dd>
+        <dt>distance3D(X1, Y1, Z1, X2, Y2, Z2)</dt>  
+        <dd> Returnerar avståndet mellan punkterna (<code>X1</code>,
+          <code>Y1</code>, <code>Z1</code>) och (<code>X2</code>, <code>Y2</code>,
+          <code>Z2</code>). Kan också anropas med bara två argument om de är
+          objekt som innehåller variablerna <code>x</code>, <code>y</code> och
+          <code>z</code>.</dd>
+        <dt>fill(FÄRG)</dt>  
+        <dd> Fyller ritytan med en färg.</dd>
+        <dt>floor(X)</dt>  
+        <dd> Returnerar talet <code>X</code> utan några
+          decimaler, avrundat neråt.</dd>
+        <dt>getPixel(X, Y)</dt>  
+        <dd> Returnerar ett objekt som innehåller variablerna
+          <code>red</code>, <code>green</code> och <code>blue</code>, som representerar
+          färgen på den pixel som befinner sig på positionen
+          (<code>X</code>, <code>Y</code>).</dd>
+        <dt>hideMouse()</dt>  
+        <dd> Döljer muspekaren.</dd>
+        <dt>keyboard</dt>  
+        <dd> Ett objekt som innehåller variabler för tangenterna på
+          tangentbordet. Variablerna är antingen sanna eller falska
+          beroende på om just den tangenten är nedtryckt för
+          tillfället. De tangenter som du kan kontrollera med namn är:
+          <code> up, down, left, right, space, shift, alt, ctrl, enter,
+          zero → nine, a → z</code>. Bokstäverna
+          stämmer bara på svenska och engelska tangentbord. Det går
+          också att kontrollera keyboard[X], där X är koden för en
+          viss tangent.</dd>
+        <dt>line(X1, Y1, X2, Y2, TJOCKLEK, FÄRG)</dt>  
+        <dd> Ritar ett streck från koordinaten (<code>X1</code>, <code>Y1</code>)
+          till (<code>X2</code>, <code>Y2</code>) med den givna tjockleken och
+          färgen.</dd>
+        <dt>loopSound(LJUD, VOLYM)</dt>  
+        <dd> Spela ett bakgrundsljud om
+          och om igen i bakgrunden, exempelvis musik. Argumenten
+          fungerar som i <code>playSound</code> som är beskrivet nedan.</dd>
+        <dt>math</dt>  
+        <dd> Ett objekt som gör det lätt att experimentera med
+          matematik. </dd>
+        <dt>mixColor(R, G, B)</dt>  
+        <dd> Används för att blanda en egen färg. Det första
+          argumentet anger hur mycket rött som ska blandas in, det
+          andra anger mängden grönt och det tredje mängden
+          blått. Varje argument ska vara mellan 0 och 255.
+          Exempel: <code>circle(100, 100, 50, mixColor(100, 0, 0));</code>.</dd>
+        <dt>mouse</dt>  
+        <dd> Ett objekt som innehåller musens nuvarande position och
+          status. Variablerna <code>x</code> och <code>y</code> ger positionen och
+          variablerna <code>left</code>, <code>right</code> och <code>middle</code> ger
+          sant eller falskt beroende på om motsvarande musknapp är
+          nedtryckt.</dd>
+        <dt>pi</dt>  
+        <dd> En variabel som innehåller talet pi.</dd>
+        <dt>picture(X, Y, BILD)</dt>  
+        <dd> Placerar en bild på ritytan, där bildens övre vänstra
+          hörn hamnar på position (<code>X</code>, <code>Y</code>).  Argumentet
+          <code>BILD</code> kan vara en webbadress eller en sökväg till en
+          bild på datorn.</dd>
+        <dt>playSound(LJUD, VOLYM)</dt> 
+        <dd> Spela upp en ljudeffekt. Argumentet <code>volym</code> ska vara
+          ett tal mellan 0 och 1; om du inte anger någon volym så blir
+          den 1.</dd>
+        <dt>pow(BAS, EXPONENT)</dt>  
+        <dd> Returnerar ett tal som är <code>BAS</code> upphöjt till
+          <code>EXPONENT</code>. Om man anropar funktionen med basen 2 och
+          exponenten 3 blir resultatet: 8.</dd>
+        <dt>preloadSound(LJUD)</dt>
+        <dd> Laddar in ett ljud i datorns minne.</dd>
+        <dt>random(X)</dt>  
+        <dd> Returnerar ett slumptal mellan 0 och <code>X - 1</code>.</dd>
+        <dt>randomAlternative(LISTA)</dt>
+        <dd> Returnerar ett slumpmässigt element från en lista.</dd>
+        <dt>rectangle(X, Y, BREDD, HÖJD, FÄRG)</dt>  
+        <dd> Ritar en rektangel på koordinaten (<code>X</code>, <code>Y</code>)
+          med den givna bredden, höjden och färgen.</dd>
+        <dt>restore()</dt>  
+        <dd> Återställer koordinatsystemet till det tillstånd som det
+          var i vid det senaste anropet av <code>save()</code>.</dd>
+        <dt>ring(X, Y, RADIE, TJOCKLEK, FÄRG)</dt>  
+        <dd> Ritar en ring på position (X, Y) med den givna radien,
+          linjetjockleken och färgen.</dd>
+        <dt>rotate(GRADER)</dt>  
+        <dd> Roterar koordinatsystemet med <code>GRADER</code> grader.</dd>
+        <dt>rotateRadians(RADIANER)</dt> 
+        <dd> Roterar koordinatsystemet med <code>RADIANER</code>
+          radianer.</dd>
+        <dt>save()</dt>  
+        <dd> Sparar koordinatsystemets nuvarande läge.</dd>
+        <dt>scale(X-FAKTOR, Y-FAKTOR)</dt>  
+        <dd> Förstorar eller förminskar hela koordinatsystemet i
+          <code>X</code>- respektive <code>Y</code>-ledd. Om ett negativt tal
+          anges blir koordinatsystemet spegelvänt kring den
+          axeln.<br>
+          Exempel: <code>scale(2, 2)</code> (allt blir dubbelt så stort)<br>
+          Exempel: <code>scale(1, -1)</code> (allt blir upp-och-nedvänt)</dd>
+        <dt>showMouse()</dt>  
+        <dd> Gör att muspekaren blir synlig.</dd>
+        <dt>sin(V)  cos(V)  tan(V)  asin(V)  acos(V)  atan(V)</dt>  
+        <dd>
+          De vanligaste trigonometriska funktionerna sinus, cosinus,
+          tangens samt deras inverser. Alla tar som argument en vinkel
+          uttryckt i radianer.</dd>
+        <dt>sqrt(X)</dt> 
+        <dd> Returnerar kvadratroten av talet <code>X</code>.</dd>
+        <dt>start()</dt>  
+        <dd> Den första funktionen som körs.</dd>
+        <dt>stopSound(LJUD)</dt>  
+        <dd> Stoppar ett ljud om det håller på att spelas upp.</dd>
+        <dt>stopUpdate()</dt>  
+        <dd> Stoppar <code>update()</code>-funktionen och avslutar därmed
+          animeringen.</dd>
+        <dt>text(X, Y, STORLEK, TEXTSTRÄNG, FÄRG)</dt>  
+        <dd> Ritar ut textsträngen <code>TEXTSTRÄNG</code> på koordinaten
+          (<code>X</code>, <code>Y</code>) med den givna färgen och
+          storleken.</dd>
+        <dt>totalHeight</dt>  
+        <dd> Den totala höjden på den tillgängliga ritytan.</dd>
+        <dt>totalWidth</dt> 
+        <dd> Den totala bredden på den tillgängliga ritytan.</dd>
+        <dt>touchscreen</dt>  
+        <dd> Ett objekt som innehåller information om användarens
+          petskärm. Objektet innehåller variabeln
+          <code>currentlyTouched</code>, som är sann eller falsk beroende på
+          om någon petar för tillfället, samt arrayen <code>points</code>
+          som innehåller de beröringspunkter som just då finns. Varje
+          beröring har tre egenskaper, <code>x</code>, <code>y</code> och
+          <code>id</code>.</dd>
+        <dt>translate(X, Y)</dt>  
+        <dd> Förflyttar koordinatsystemets origo till koordinaten
+          (<code>X</code>, <code>Y</code>).</dd>
+        <dt>triangle(X1, Y1, X2, Y2, X3, Y3, FÄRG)</dt>  
+        <dd> Ritar en triangel som har sina hörn på koordinaterna
+          (<code>X1</code>, <code>Y1</code>), (<code>X2</code>, <code>Y2</code>) och
+          (<code>X3</code>, <code>Y3</code>) med den givna färgen.</dd>
+        <dt>turtle</dt>  
+        <dd> Ett objekt som man kan använda för att göra så kallad
+          turtlegrafik.</dd>
+        <dt>update()</dt>  
+        <dd> En funktion som anropas många gånger per sekund och gör
+          det möjligt för programmeraren att skapa rörliga
+          objekt.</dd>
+        <dt>updatesPerSecond</dt> 
+        <dd> Innehåller ett tal som anger hur många gånger per sekund
+          som <code>update()</code> anropas.</dd>
+      </dl>
+    </div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div></div><script>
+
+updatePreview()
+let dialog=document.getElementById("dialog-api");
+ function openDialog(){
+dialog.style.display="block";
+    }
+    function closeDialog(){
+dialog.style.display="none";
+    }
+function post_new_code()
+{
+  if (warning)
+  {
+    $('#save').html('Jobbar...');
+    $('#save').attr('disabled','disabled');
+    console.log('saving code');
+    code = {code: editor.getValue()};
+    
+    $.ajax({url: "",
+          type: "POST", 
+          data: code,
+          success: function (privateID) 
+          { 
+            window.onbeforeunload = null;
+            window.location.replace("https://frozenland.servegame.com/MathGameWebb/"+privateID)
+          },
+          error: function (jqXHR, textStatus, errorThrown) 
+          { 
+            $('#savemessage').html('Misslyckades med att spara, försök igen lite senare!');
+            $('#savemessage').fadeTo("slow", 1).animate({opacity: 1.0}, 3000).fadeTo("slow", 0);
+            $('#save').removeAttr('disabled');
+            $('#save').html('Spara koden');
+          } });
+  }
+}
+
+
+    </script>
+  
+
+
+</body></html>
