@@ -33,9 +33,9 @@
     <button id="fontminus" onclick="change_fontsize(-1)">-</button>
     <button id="fullscreen" onclick="toggle_fullscreen()">F</button>
 
-    <button id="save" type="button" onclick="warning=true;post_new_code()">Spara koden</button>
+    <button id="save" type="button" hidden onclick="warning=true;post_new_code()">Spara koden</button>
     <button id="run" type="button" onclick="updatePreview()">Kör koden</button>
-<button id="api" type="button" onclick="openDialog()">API</button>
+<button id="api" type="button" onclick="openDialog()">Hjälp</button>
     <button id="youtube" type="button" onclick="window.open('https://www.youtube.com/playlist?list=PLacLTA7npkEaxlsKIL06aLqtLVKIKurRN'); return false">Videoguider</button>
     <div id="savemessage" style="opacity: 0;">Should not see me!</div>
 
@@ -56,7 +56,7 @@
    tabindex="-1" role="dialog" aria-describedby="dialog_api" aria-labelledby="ui-id-1" id="dialog-api"
     style="position: absolute; height: auto; width: 600px; top: 0px; left: 0px; display:none;">
     <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">
-      <span id="ui-id-1" class="ui-dialog-title">API</span>
+      <span id="ui-id-1" class="ui-dialog-title">Hjälp</span>
       <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" 
       role="button" title="Close">
     <span class="ui-button-icon-primary ui-icon ui-icon-closethick"  onclick="closeDialog();">X</span><span class="ui-button-text">Close</span></button></div><div class="dialog ui-dialog-content ui-widget-content" id="dialog_api" style="width: auto; min-height: 83px; max-height: none; height: auto;">
