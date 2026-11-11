@@ -7,13 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
-  const cssFiler = [
-    "ajax.googleapis.com" + "/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/codemirror.min.css",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/addon/display/fullscreen.min.css"
+  const stilar = [
+    ["://googleapis.com", "/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/lib/codemirror.min.css"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/addon/display/fullscreen.min.css"]
   ];
-  cssFiler.forEach(url => {
-    document.write('<link rel="stylesheet" href="https://' + url + '">');
+  stilar.forEach(delar => {
+    const l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://' + delar[0] + delar[1];
+    document.head.appendChild(l);
   });
 </script>
 <body>
@@ -221,25 +224,41 @@
   </div>
 
 <script>
-  const jsFiler = [
-    "ajax.googleapis.com" + "/ajax/libs/jquery/1.9.0/jquery.min.js",
-    "ajax.googleapis.com" + "/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/codemirror.min.js",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/css/css.min.js",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js",
-    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/addon/display/fullscreen.min.js"
+  const bibliotek = [
+    ["://googleapis.com", "/ajax/libs/jquery/1.9.0/jquery.min.js"],
+    ["://googleapis.com", "/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/lib/codemirror.min.js"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/xml/xml.min.js"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/javascript/javascript.min.js"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/css/css.min.js"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/htmlmixed/htmlmixed.min.js"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/addon/edit/matchbrackets.min.js"],
+    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/addon/display/fullscreen.min.js"]
   ];
-  jsFiler.forEach(url => {
-    document.write('<script src="https://' + url + '"><\/script>');
-  });
+
+  // Laddar alla bibliotek ett i taget i exakt rätt ordning
+  function laddaSkript(index) {
+    if (index >= bibliotek.length) {
+      // När alla är laddade, ladda lokala filer sist
+      const tp = document.createElement('script');
+      tp.src = './libs/jquery.ui.touch-punch.min.js';
+      tp.onload = function() {
+        const edit = document.createElement('script');
+        edit.src = './libs/edit.js';
+        document.body.appendChild(edit);
+      };
+      document.body.appendChild(tp);
+      return;
+    }
+
+    const s = document.createElement('script');
+    s.src = 'https://' + bibliotek[index][0] + bibliotek[index][1];
+    s.onload = function() { laddaSkript(index + 1); };
+    s.onerror = function() { console.error("Kunde inte ladda: " + s.src); };
+    document.body.appendChild(s);
+  }
+
+  laddaSkript(0);
 </script>
-  <script src="./libs/jquery.ui.touch-punch.min.js"></script>
-
-
-  <!-- 3. Ditt eget skript sist -->
-  <script src="./libs/edit.js"></script>
 </body>
 </html>
