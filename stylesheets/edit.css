@@ -173,21 +173,19 @@ a {
 #fontplus,
 #fontminus,
 #fullscreen {
-  position: absolute;
-  bottom: 5px;
-  left: 50px;
+
   width: 30px;
   height: 30px;
   font-size: 23px;
   z-index: 100000;
 }
 
-#fontminus {
-  left: 15px;
-}
-
-#fullscreen {
-  left: 85px;
+#buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 button {

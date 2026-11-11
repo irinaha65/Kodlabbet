@@ -11,7 +11,7 @@
   </head>
   <body style="zoom: 1;">
     <h1>Kodlabbet</h1>
-    
+    <div id="buttons">
     <button id="fontplus" onclick="change_fontsize(1)">+</button>
     <button id="fontminus" onclick="change_fontsize(-1)">-</button>
     <button id="fullscreen" onclick="toggle_fullscreen()">F</button>
@@ -22,7 +22,7 @@
 <button id="api" type="button" onclick="openDialog()">Hjälp</button>
     <button id="youtube" type="button" hidden onclick="window.open('https://www.youtube.com/playlist?list=PLacLTA7npkEaxlsKIL06aLqtLVKIKurRN'); return false">Videoguider</button>
     <div id="savemessage" hidden style="opacity: 0;">Should not see me!</div>
-
+</div>
     <div id="codecontainer"><textarea id="code" name="code" style="display: none;">&lt;script src="./scripts/simple.js"&gt;
  //första raden ska inte tas bort, den behövs för att
  // koden ska fungera korrekt
