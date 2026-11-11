@@ -191,11 +191,13 @@ button {
   margin: 0;
   background: #fff;
 }
-
-#dialog_api dl {
+#dialog_api  {
   height: 100%;
   width: 100%;
   z-index: 100005;
+}
+#dialog_api dl {
+  height: 100%;
 }
 
 #dialog_api dt {
