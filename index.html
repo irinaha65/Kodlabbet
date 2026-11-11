@@ -6,19 +6,16 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- jQuery 1.9.0 och jQuery UI 1.11.2 (fullständiga filsökvägar) -->
-  <script src="https://googleapis.com"></script>
-  <link rel="stylesheet" href="https://googleapis.com">
-  <script src="https://googleapis.com"></script>
-
-  <!-- Dina egna lokala stilmallar -->
-  <link rel="stylesheet" href="./stylesheets/jquery-ui.css">
-  <link rel="stylesheet" href="./stylesheets/edit.css">
-
-  <!-- CodeMirror CSS (fullständiga filsökvägar) -->
-  <link rel="stylesheet" href="https://cloudflare.com">
-  <link rel="stylesheet" href="https://cloudflare.com">
-</head>
+<script>
+  const cssFiler = [
+    "ajax.googleapis.com" + "/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/codemirror.min.css",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/addon/display/fullscreen.min.css"
+  ];
+  cssFiler.forEach(url => {
+    document.write('<link rel="stylesheet" href="https://' + url + '">');
+  });
+</script>
 <body>
   <h1>Kodlabbet</h1>
   <div id="buttons">
@@ -223,19 +220,24 @@
       </dl>
   </div>
 
-  <!-- 1. jQuery -->
-  <script src="https://googleapis.com"></script>
-  <script src="https://googleapis.com"></script>
+<script>
+  const jsFiler = [
+    "ajax.googleapis.com" + "/ajax/libs/jquery/1.9.0/jquery.min.js",
+    "ajax.googleapis.com" + "/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/codemirror.min.js",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/css/css.min.js",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js",
+    "://cloudflare.com" + "/ajax/libs/codemirror/5.65.16/addon/display/fullscreen.min.js"
+  ];
+  jsFiler.forEach(url => {
+    document.write('<script src="https://' + url + '"><\/script>');
+  });
+</script>
   <script src="./libs/jquery.ui.touch-punch.min.js"></script>
 
-  <!-- 2. CodeMirror och tillägg från Cloudflare CDN -->
-  <script src="https://cloudflare.com"></script>
-  <script src="https://cloudflare.com"></script>
-  <script src="https://cloudflare.com"></script>
-  <script src="https://cloudflare.com"></script>
-  <script src="https://cloudflare.com"></script>
-  <script src="https://cloudflare.com"></script>
-  <script src="https://cloudflare.com"></script>
 
   <!-- 3. Ditt eget skript sist -->
   <script src="./libs/edit.js"></script>
