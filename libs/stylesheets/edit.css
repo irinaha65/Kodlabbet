@@ -238,12 +238,6 @@ button {
     top: 10px;
   }
 
-  #youtube {
-    width: 140px;
-    font-size: 14px;
-    left: 50%;
-    margin-left: -70px;
-  }
 
   #title,
   #author,
@@ -255,7 +249,7 @@ button {
 }
 
 /* 3. Extra smala skärmar (t.ex. 360px breda) */
-@media (max-width: 380px) {
+@media (max-width: 375px) {
   button {
     padding: 4px 6px;
     font-size: 12px;
