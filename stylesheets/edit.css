@@ -174,10 +174,11 @@ a {
 
 #buttons {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+
   gap: 10px;
   flex-wrap: wrap;
+  height: auto;
 }
 
 button {
