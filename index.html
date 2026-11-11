@@ -11,7 +11,18 @@
   </head>
   <body style="zoom: 1;">
     <h1>Kodlabbet</h1>
-   
+    
+    <button id="fontplus" onclick="change_fontsize(1)">+</button>
+    <button id="fontminus" onclick="change_fontsize(-1)">-</button>
+    <button id="fullscreen" onclick="toggle_fullscreen()">F</button>
+
+    <button id="save" type="button" hidden 
+    onclick="warning=true;post_new_code()">Spara koden</button>
+    <button id="run" type="button" onclick="updatePreview()">Kör koden</button>
+<button id="api" type="button" onclick="openDialog()">Hjälp</button>
+    <button id="youtube" type="button" hidden onclick="window.open('https://www.youtube.com/playlist?list=PLacLTA7npkEaxlsKIL06aLqtLVKIKurRN'); return false">Videoguider</button>
+    <div id="savemessage" hidden style="opacity: 0;">Should not see me!</div>
+
     <div id="codecontainer"><textarea id="code" name="code" style="display: none;">&lt;script src="./scripts/simple.js"&gt;
  //första raden ska inte tas bort, den behövs för att
  // koden ska fungera korrekt
@@ -31,18 +42,7 @@
       <div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true" style="display: block; right: 0px; left: 30px;"><div style="height: 100%; min-height: 1px; width: 298px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: -12px; border-right-width: 18px; min-height: 91px; min-width: 230.442px; padding-right: 0px; padding-bottom: 12px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 14.9333px;">&nbsp;</div></div><div class="CodeMirror-code" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span> <span class="cm-attribute">src</span>=<span class="cm-string">"./scripts/simple.js"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">  <span class="cm-variable">circle</span>(<span class="cm-number">100</span>, <span class="cm-number">100</span>, <span class="cm-number">20</span>, <span class="cm-string">"red"</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 18px; width: 1px; top: 103px;"></div><div class="CodeMirror-gutters" style="height: 373px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div>
     <div id="iframecontainer"><iframe id="preview"></iframe></div>
 
-    
-    <button id="fontplus" onclick="change_fontsize(1)">+</button>
-    <button id="fontminus" onclick="change_fontsize(-1)">-</button>
-    <button id="fullscreen" onclick="toggle_fullscreen()">F</button>
-
-    <button id="save" type="button" hidden 
-    onclick="warning=true;post_new_code()">Spara koden</button>
-    <button id="run" type="button" onclick="updatePreview()">Kör koden</button>
-<button id="api" type="button" onclick="openDialog()">Hjälp</button>
-    <button id="youtube" type="button" hidden onclick="window.open('https://www.youtube.com/playlist?list=PLacLTA7npkEaxlsKIL06aLqtLVKIKurRN'); return false">Videoguider</button>
-    <div id="savemessage" style="opacity: 0;">Should not see me!</div>
-
+   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="./libs/jquery.ui.touch-punch.min.js"></script>
