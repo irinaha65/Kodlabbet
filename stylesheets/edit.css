@@ -133,32 +133,24 @@ a {
   font-family: 'Quantico', sans-serif;
   font-size: 20px;
   width: 200px;
-  position: absolute;
-  bottom: 5px;
-  margin-top: 130px;
+
   height: 40px;
-  margin-left: -100px;
+
 }
 
 #save {
-  left: 25%;
+
   z-index: 100000;
 }
 
 #api {
-  left: 50%;
+
   z-index: 100000;
 }
 
-#run {
-  left: 75%;
-}
 
-#savemessage {
-  position: absolute;
-  left: 40px;
-  top: 0px;
-}
+
+
 
 #title,
 #author,
@@ -250,4 +242,52 @@ textarea {
   padding: 12px;
   box-sizing: border-box;
   width: 100%;
+}
+
+/* Mobilanpassning: Placera iframecontainer under codecontainer */
+/* 1. Surfplattor och större mobiler i landskapsläge (upp till 768px) */
+@media (max-width: 768px) {
+
+  #codecontainer,
+  #iframecontainer {
+    left: 10px;
+    right: 10px;
+    margin: 0;
+  }
+
+  #codecontainer {
+    top: 70px;
+    bottom: 52%;
+  }
+
+  #iframecontainer {
+    top: 50%;
+    bottom: 60px;
+  }
+}
+
+/* 2. Vanliga mobiltelefoner i stående läge (upp till 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 18px;
+    top: 10px;
+  }
+
+
+  #title,
+  #author,
+  #description {
+    width: 100%;
+    /* Gör formulärfält lika breda som rutan */
+    box-sizing: border-box;
+  }
+}
+
+/* 3. Extra smala skärmar (t.ex. 360px breda) */
+@media (max-width: 375px) {
+  button {
+    padding: 4px 6px;
+    font-size: 12px;
+    margin-right: 4px;
+  }
 }
