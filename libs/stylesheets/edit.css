@@ -210,54 +210,55 @@ button {
 }
 
 /* Mobilanpassning: Placera iframecontainer under codecontainer */
+/* 1. Surfplattor och större mobiler i landskapsläge (upp till 768px) */
 @media (max-width: 768px) {
 
   #codecontainer,
   #iframecontainer {
     left: 10px;
     right: 10px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
   }
 
-  /* Övre halvan för kodredigeraren */
   #codecontainer {
     top: 70px;
     bottom: 52%;
   }
 
-  /* Undre halvan för resultatet (iframe) */
   #iframecontainer {
     top: 50%;
     bottom: 60px;
   }
+}
 
-  /* Flytta rubriken "Monitor" ovanför undre rutan */
-  #monitortext {
-    top: auto;
-    bottom: calc(50% + 2px);
-    left: 10px;
-    right: auto;
+/* 2. Vanliga mobiltelefoner i stående läge (upp till 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 18px;
+    top: 10px;
   }
 
-  /* Förhindra att mobilen zoomar in och laggar i CodeMirror vid touch */
-  .CodeMirror {
-    font-size: 16px;
-    touch-action: manipulation;
+  #youtube {
+    width: 140px;
+    font-size: 14px;
+    left: 50%;
+    margin-left: -70px;
   }
 
-  /* Anpassa kontrollpanelen så den inte blir bredare än skärmen */
-  #controlpanel {
-    left: 10px;
-    right: 10px;
-    width: auto;
+  #title,
+  #author,
+  #description {
+    width: 100%;
+    /* Gör formulärfält lika breda som rutan */
     box-sizing: border-box;
   }
+}
 
-  /* Gör knapparna längst ner smidigare på små skärmar */
-  #buttonContainer {
-    left: 10px;
-    right: 10px;
-    overflow-x: auto;
+/* 3. Extra smala skärmar (t.ex. 360px breda) */
+@media (max-width: 380px) {
+  button {
+    padding: 4px 6px;
+    font-size: 12px;
+    margin-right: 4px;
   }
 }
