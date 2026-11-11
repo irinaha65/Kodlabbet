@@ -8,14 +8,15 @@
 
 <script>
   const stilar = [
-    ["://googleapis.com", "/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/lib/codemirror.min.css"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/addon/display/fullscreen.min.css"]
+    "ajax.googleapis.com" + "/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/lib/codemirror.min.css",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/addon/display/fullscreen.min.css"
   ];
-  stilar.forEach(delar => {
+  stilar.forEach(url => {
     const l = document.createElement('link');
     l.rel = 'stylesheet';
-    l.href = 'https://' + delar[0] + delar[1];
+    // Ser till att det alltid bara finns ett enda https:// i början
+    l.href = 'https://' + url.replace(/^https?:\/\//, '');
     document.head.appendChild(l);
   });
 </script>
@@ -225,21 +226,19 @@
 
 <script>
   const bibliotek = [
-    ["://googleapis.com", "/ajax/libs/jquery/1.9.0/jquery.min.js"],
-    ["://googleapis.com", "/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/lib/codemirror.min.js"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/xml/xml.min.js"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/javascript/javascript.min.js"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/css/css.min.js"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/mode/htmlmixed/htmlmixed.min.js"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/addon/edit/matchbrackets.min.js"],
-    ["cdn.jsdelivr.net", "/npm/codemirror@5.65.16/addon/display/fullscreen.min.js"]
+    "ajax.googleapis.com" + "/ajax/libs/jquery/1.9.0/jquery.min.js",
+    "ajax.googleapis.com" + "/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/lib/codemirror.min.js",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/mode/xml/xml.min.js",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/mode/javascript/javascript.min.js",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/mode/css/css.min.js",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/mode/htmlmixed/htmlmixed.min.js",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/addon/edit/matchbrackets.min.js",
+    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/addon/display/fullscreen.min.js"
   ];
 
-  // Laddar alla bibliotek ett i taget i exakt rätt ordning
   function laddaSkript(index) {
     if (index >= bibliotek.length) {
-      // När alla är laddade, ladda lokala filer sist
       const tp = document.createElement('script');
       tp.src = './libs/jquery.ui.touch-punch.min.js';
       tp.onload = function() {
@@ -252,7 +251,8 @@
     }
 
     const s = document.createElement('script');
-    s.src = 'https://' + bibliotek[index][0] + bibliotek[index][1];
+    // Tar bort eventuellt dubbelt https:// som klistras in automatiskt
+    s.src = 'https://' + bibliotek[index].replace(/^https?:\/\//, '');
     s.onload = function() { laddaSkript(index + 1); };
     s.onerror = function() { console.error("Kunde inte ladda: " + s.src); };
     document.body.appendChild(s);
