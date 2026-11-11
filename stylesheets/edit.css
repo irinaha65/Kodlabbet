@@ -138,6 +138,10 @@ a {
 
 }
 
+#api {
+  width: 80px;
+}
+
 #save {
 
   z-index: 100000;
