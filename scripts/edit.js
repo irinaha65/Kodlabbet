@@ -167,10 +167,10 @@ window.onbeforeunload = function () {
 }
 
  function openDialog() {
-      dialog.style.display = "block";
+   $("#dialog_api").dialog("open");
     }
     function closeDialog() {
-      dialog.style.display = "none";
+  $("#dialog_api").dialog("close");
     }
     function post_new_code() {
       if (warning) {
