@@ -6,20 +6,30 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script>
-  const stilar = [
-    "ajax.googleapis.com" + "/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css",
-    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/lib/codemirror.min.css",
-    "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/addon/display/fullscreen.min.css"
-  ];
-  stilar.forEach(url => {
-    const l = document.createElement('link');
-    l.rel = 'stylesheet';
-    // Ser till att det alltid bara finns ett enda https:// i början
-    l.href = 'https://' + url.replace(/^https?:\/\//, '');
-    document.head.appendChild(l);
-  });
-</script>
+
+  <link href="https://googleapis.com" rel="stylesheet" type="text/css">
+  <link href="https://googleapis.com" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./stylesheets/jquery-ui.css">
+
+  <script>
+    const stilar = [
+      "://googleapis.com" + "/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css",
+      "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/lib/codemirror.min.css",
+      "cdn.jsdelivr.net" + "/npm/codemirror@5.65.16/addon/display/fullscreen.min.css"
+    ];
+    stilar.forEach(url => {
+      const l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = 'https://' + url.replace(/^https?:\/\//, '');
+      document.head.appendChild(l);
+    });
+
+    // Laddar din egen edit.css allra sist så att den inte skrivs över
+    const egenCss = document.createElement('link');
+    egenCss.rel = 'stylesheet';
+    egenCss.href = './stylesheets/edit.css';
+    document.head.appendChild(egenCss);
+  </script>
 <body>
   <h1>Kodlabbet</h1>
   <div id="buttons">
