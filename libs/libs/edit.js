@@ -175,3 +175,36 @@ window.onbeforeunload = function()
   if (warning) 
     return "Du har gjort osparade ändringar. Vill du verkligen sticka härifrån?";
 }
+  updatePreview()
+    let dialog = document.getElementById("dialog-api");
+    function openDialog() {
+      dialog.style.display = "block";
+    }
+    function closeDialog() {
+      dialog.style.display = "none";
+    }
+    function post_new_code() {
+      if (warning) {
+        $('#save').html('Jobbar...');
+        $('#save').attr('disabled', 'disabled');
+        console.log('saving code');
+        code = { code: editor.getValue() };
+
+        $.ajax({
+          url: "",
+          type: "POST",
+          data: code,
+          success: function (privateID) {
+            window.onbeforeunload = null;
+            window.location.replace("https://frozenland.servegame.com/MathGameWebb/" + privateID)
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            $('#savemessage').html('Misslyckades med att spara, försök igen lite senare!');
+            $('#savemessage').fadeTo("slow", 1).animate({ opacity: 1.0 }, 3000).fadeTo("slow", 0);
+            $('#save').removeAttr('disabled');
+            $('#save').html('Spara koden');
+          }
+        });
+      }
+    }
+
