@@ -192,7 +192,7 @@ button {
   background: #fff;
 }
 #dialog_api  {
-  position: fixed;
+  position: absolute;
   top: 0;
   height: 100%;
   width: 100%;
