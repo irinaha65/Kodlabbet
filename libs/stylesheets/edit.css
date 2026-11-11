@@ -1,5 +1,5 @@
-body, html
-{
+body,
+html {
   padding: 0;
   margin: 0;
   font-family: 'Quantico', sans-serif;
@@ -10,8 +10,8 @@ body, html
   height: 100%;
 
 }
-#control
-{
+
+#control {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -22,8 +22,8 @@ body, html
   cursor: pointer;
   font-size: 30px;
 }
-#controlpanel
-{
+
+#controlpanel {
   border: 1px solid black;
   position: absolute;
   top: 0px;
@@ -35,69 +35,68 @@ body, html
   padding-left: 20px;
   padding-bottom: 20px;
 }
-#controlpanel h3
-{
+
+#controlpanel h3 {
   margin: 0;
   padding: 0;
   padding-top: 10px;
 }
 
-#controlpanel a
-{
+#controlpanel a {
   color: darkred;
 }
 
-#controlpanel table
-{
+#controlpanel table {
   height: 150px;
 }
-#codecontainer, #iframecontainer
-{
+
+#codecontainer,
+#iframecontainer {
   position: absolute;
   width: auto;
   top: 70px;
   bottom: 60px;
 }
-#codecontainer
-{
+
+#codecontainer {
   left: 10px;
   right: 50%;
   margin-right: 5px;
   max-height: 800;
   overflow: hidden;
 }
-#iframecontainer
-{
+
+#iframecontainer {
   right: 10px;
   left: 50%;
   margin-left: 5px;
   overflow: hidden;
 }
-.CodeMirror, iframe
-{
+
+.CodeMirror,
+iframe {
   width: 100%;
   height: 100%;
   border: 2px ridge silver;
   -webkit-border-radius: 2px;
-  -moz-border-radius:    2px;
-  border-radius:         2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
   background-color: white;
 }
 
-.CodeMirror 
-{
+.CodeMirror {
   font-size: 13px;
   font-family: 'Source Code Pro', sans-serif;
 }
-h1
-{
+
+h1 {
   position: absolute;
   right: 15px;
   top: 5px;
   margin: 0;
   color: black;
   text-shadow:
-    0 0 2px rgba(204, 208, 212,0.9),
+    0 0 2px rgba(204, 208, 212, 0.9),
     0 15px 25px rgba(0, 0, 0, 0.3),
     0 -2px 3px rgba(0, 0, 0, 0.1),
     0 -5px 10px rgba(255, 255, 255, 0.5),
@@ -105,88 +104,89 @@ h1
     0 3px 4px rgba(255, 255, 255, 0.2),
     0 0 20px rgba(255, 255, 255, 0.45);
 }
-h2
-{
+
+h2 {
   font-size: 15px;
 }
-#kodtext, #monitortext
-{
+
+#kodtext,
+#monitortext {
   position: absolute;
   top: 35px;
 }
-a
-{
-color: rgb(100,255,100);
+
+a {
+  color: rgb(100, 255, 100);
 }
-#kodtext
-{
+
+#kodtext {
   left: 10px;
 }
-#monitortext
-{
+
+#monitortext {
   right: 10px;
 }
 
-#buttonContainer{
-   position: absolute;
+#buttonContainer {
+  position: absolute;
   bottom: 5px;
   margin-top: 130px;
   height: 40px;
   display: flex;
   flex-direction: row;
-  justify-content: stretch ;
+  justify-content: stretch;
 }
-#savemessage
-{
+
+#savemessage {
   position: absolute;
   left: 40px;
   top: 0px;
 }
-#title, #author, #description
-{
+
+#title,
+#author,
+#description {
   width: 250px;
 }
-#description
-{
-height: 70px;
+
+#description {
+  height: 70px;
 }
 
 
-button
-{
+button {
   -webkit-border-radius: 5px;
- 
+
   margin-right: 10px;
   background: #fff;
   padding: 5 5 5;
   min-width: 20px;
 }
-#dialog_api dl
-{
+
+#dialog_api dl {
   height: 500px;
 }
-#dialog_api dt
-{
+
+#dialog_api dt {
   font-family: monospace;
 }
-#dialog_api dd
-{
+
+#dialog_api dd {
   margin-top: 5px;
   margin-bottom: 1em;
 }
-.cm-comment
-{
+
+.cm-comment {
   color: rgb(0, 80, 200) !important;
   font-weight: bold;
 }
-.CodeMirror-matchingbracket
-{
+
+.CodeMirror-matchingbracket {
   font-weight: bold;
   color: brown !important;
-} 
+}
 
-#youtube
-{
+#youtube {
   font-family: 'Quantico', sans-serif;
   font-size: 20px;
   width: 200px;
@@ -197,13 +197,11 @@ button
   left: 25%;
 }
 
-#youtube_container
-{
-   height: 400px;
+#youtube_container {
+  height: 400px;
 }
 
-#fonden
-{
+#fonden {
   height: 1.0em;
   cursor: pointer;
   position: absolute;
@@ -211,3 +209,55 @@ button
   bottom: 15px;
 }
 
+/* Mobilanpassning: Placera iframecontainer under codecontainer */
+@media (max-width: 768px) {
+
+  #codecontainer,
+  #iframecontainer {
+    left: 10px;
+    right: 10px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Övre halvan för kodredigeraren */
+  #codecontainer {
+    top: 70px;
+    bottom: 52%;
+  }
+
+  /* Undre halvan för resultatet (iframe) */
+  #iframecontainer {
+    top: 50%;
+    bottom: 60px;
+  }
+
+  /* Flytta rubriken "Monitor" ovanför undre rutan */
+  #monitortext {
+    top: auto;
+    bottom: calc(50% + 2px);
+    left: 10px;
+    right: auto;
+  }
+
+  /* Förhindra att mobilen zoomar in och laggar i CodeMirror vid touch */
+  .CodeMirror {
+    font-size: 16px;
+    touch-action: manipulation;
+  }
+
+  /* Anpassa kontrollpanelen så den inte blir bredare än skärmen */
+  #controlpanel {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    box-sizing: border-box;
+  }
+
+  /* Gör knapparna längst ner smidigare på små skärmar */
+  #buttonContainer {
+    left: 10px;
+    right: 10px;
+    overflow-x: auto;
+  }
+}
